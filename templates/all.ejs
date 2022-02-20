@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>links</title>
+</head>
+
+<body  class="d-flex  flex-column m-3 bg-light  p-4 align-items-center">
+    <h1 class="font-weight-bold" >Links</h1>
+<a href="/add" class="btn btn-outline-info btn-sm" >Adicionar link</a>
+    <!--ao dar o find em Link,
+         o banco de dados retorna um array(link)-->
+<div class="m-4 container-fluid ">
+    <% for(let i= 0; i < links.length; i++) {%>
+
+        <div id="<%=links[i]._id%>" class="flex-column align-self-start rounded border border-dark  p-3 mb-3 d-flex">
+            <form action="/?_method=DELETE" method="post">
+                <!--/?_method=DELETE do method-override-->
+                <h2><%=links[i].title%> <a class="btn float-right btn-success border border-dark btn-sm"  href="/<%=links[i].title%>"><i class="material-icons m-0 " >login</i></a></h2>                 
+
+                <div>Descrição: <%=links[i].description%></div>
+                <div > <small>URL: <%=links[i].url%></small></div>
+                <div class="ml-auto">
+                <div class="text-info btn"><i class="material-icons mt-2 " style="vertical-align: sub;">bar_chart</i>Clicks: <%=links[i].click%></div>
+                <input name="id" value="<%=links[i]._id%>" hidden>
+                <button class="btn  btn-sm float-right  mt-4 mr-2" type="submit"><i class="material-icons m-0 " >delete</i></button> 
+                <a class="btn  btn-sm float-right mt-4 mr-2" href="/edit/<%=links[i]._id%>"><i class="material-icons m-0 " >edit</i></a>
+
+            </div>
+                <script>
+                    var colors = ['#b7ebc3', '#6cfc6a', '#8af298'];
+var random_color = colors[Math.floor(Math.random() * colors.length)];
+document.getElementById('<%=links[i]._id%>').style.backgroundColor = random_color;
+
+
+                </script>
+
+                <!-- onclick="deleteLink('<%=links[i]._id%>')" -->
+            </form>
+        </div>
+        <%}%>
+    </div>
+
+
+
+
+
+
+
+
+
+            <!-- <script>
+
+                function deleteLink(id) {
+                    fetch('/' + id, { method: 'DELETE' }).then(res => {
+                        if(res.status == 200) {
+                            //text transform
+                            res.text().then(linkId => {
+                                console.log(linkId);
+                                document.getElementById(linkId).remove();
+                            })
+                        }else{
+                            res.json().then(err=>{
+                                console.log(err.message);
+                                alert(err.message)
+                            })
+                        }
+                        })
+                }
+            </script> -->
+
+
+
+</body>
+
+</html>

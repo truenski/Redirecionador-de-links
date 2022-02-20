@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Redirect</title>
+</head>
+<body  class="d-flex flex-column m-3 bg-dark p-4 align-items-center">
+    <h1 class="text-light">Add Link</h1>
+    <a href="/" class="btn btn-outline-light btn-sm">All links</a>
+<form class=" m-3"action="/" method="POST">
+    <div class="form-group  p-4 m-3 d-flex flex-column  justify-content-center">
+
+<input name="title" value="<%=body.title%>" placeholder="Title" class="field m-1 form-control" type="text" >
+<input name="description" value="<%=body.description%>" placeholder="Description" class="field m-1 form-control" type="text">
+<input name="url" placeholder="URL" value="<%=body.url%>" class="field m-1 form-control" type="text" >
+<button class="btn align-self-center m-3  btn-light">Salvar</button>
+<div class="erros"></div>
+</div>
+<%if(err){%><div class=" alert alert-danger">
+    <strong>Error: </strong>  <%=err.message%>
+          <%}%></div>
+</form>
+
+
+
+    
+</body>
+</html>
